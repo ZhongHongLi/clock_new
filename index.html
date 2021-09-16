@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>时钟</title>
+    <link rel="stylesheet" href="./font-family/fontalibaba.css">
+    <link rel="stylesheet" href="./font-family/font.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            background-color: black;
+            font-family: 'Alibaba PuHuiTi';
+        }
+
+        .middle_f {
+            color: #fff;
+            font-size: 70px;
+        }
+
+        #time-year,
+        #hour_div {
+            color: #fff;
+            font-size: 80px;
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #middle_f {
+            font-size: 70px;
+            color: #fff;
+        }
+
+        #y,
+        #r,
+        #h,
+        #m,
+        #day,.years-dw,.day-dw{
+            font-family: 'DIN';
+            font-size: 35vh;
+            /* font-weight: 600;/ */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="time-year">
+        <div id="y"></div>
+        <div class="years-dw">年</div>
+        <span>-</span>
+        <div id="r"></div>
+        <div>-</div>
+        <div id="day"></div>
+        <div class="day-dw">日</div>
+    </div>
+    <div id="hour_div">
+        <div id="h"></div>
+        <span id="middle_f" style="visibility: hidden;">:</span>
+        <div id="m"></div>
+    </div>
+    <script>
+        var date, months, month, hour, minutes;
+        var mddile_f = document.getElementById('middle_f');
+        var y = document.getElementById('y');
+        var r = document.getElementById('r');
+        var h = document.getElementById('h');
+        var ms = document.getElementById('m');
+        var day = document.getElementById('day');
+        var timer = null;
+
+        function startime() {
+            date = new Date();
+            months = date.getMonth() + 1
+            month = date.getMonth() < 10 ? 0 + `${months}` : `${months}`;
+            hour = date.getHours() < 10 ? 0 + `${date.getHours()}` : date.getHours();
+            minutes = date.getMinutes() < 10 ? 0 + `${date.getMinutes()}` : date.getMinutes();
+            if (mddile_f.style.visibility == 'hidden') {
+                mddile_f.style.visibility = '';
+            } else {
+                mddile_f.style.visibility = 'hidden';
+            }
+
+            y.innerHTML = `${date.getFullYear()}`;
+            r.innerHTML = `${month}`;
+            h.innerHTML = `${hour}`;
+            ms.innerHTML = `${minutes}`;
+            day.innerHTML = `${date.getDate()}`
+        }
+        startime();
+        timer = setInterval(function () {
+            startime();
+        }, 1000)
+
+
+    </script>
+</body>
+
+</html>
